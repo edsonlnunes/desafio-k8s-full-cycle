@@ -1,0 +1,12 @@
+version: "3"
+
+#apk add --update gcc go
+services: 
+  desafio-k8s:
+    image: golang:1.12-alpine
+    container_name: desafio-go-k8s
+    working_dir: /go/src/
+    volumes: 
+      - .:/go/src
+    tty: true
+    

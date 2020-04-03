@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: desafio-mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: desafio-mysql-server
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: desafio-mysql-server
+      tier: db
+
+  template:
+    metadata:
+      labels:
+        app: desafio-mysql-server
+        tier: db
+    spec:
+      containers:
+      - image: mysql:5.7
+        name: desafio-mysql-server
+
+        args:
+          - "--ignore-db-dir=lost+found"
+
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: desafio-mysql-pass
+              key: password
+
+        ports:
+        - containerPort: 3306
+
+        volumeMounts:
+        - name: desafio-mysql-persistent-storage
+          mountPath: /var/lib/mysql
+
+      volumes:
+      - name: desafio-mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata: 
+  name: desafio-mysql-service
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: desafio-mysql-server
+    tier: db
+  clusterIP: None
+  

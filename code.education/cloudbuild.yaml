@@ -1,0 +1,21 @@
+steps:
+
+- id: "Rodando os testes"
+  name: 'gcr.io/cloud-builders/go'
+  args: ['test']
+
+- id: 'Criando o container'
+  name: 'gcr.io/cloud-builders/docker'
+  args:
+  - 'build'
+  - '--build-arg'
+  - 'version=1.0.0'
+  - '-t'
+  - 'gcr.io/$PROJECT_ID/desafio-go-k8s:1.0.0'
+  - '-t'
+  - 'gcr.io/$PROJECT_ID/desafio-go-k8s:latest'
+  - '.'
+
+images:
+- 'gcr.io/$PROJECT_ID/desafio-go-k8s:latest'
+- 'gcr.io/$PROJECT_ID/desafio-go-k8s:1.0.0'
