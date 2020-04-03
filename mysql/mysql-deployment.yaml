@@ -53,7 +53,7 @@ spec:
       volumes:
       - name: desafio-mysql-persistent-storage
         persistentVolumeClaim:
-          claimName: mysql-pv-claim
+          claimName: desafio-mysql-pvc
 
 
 
