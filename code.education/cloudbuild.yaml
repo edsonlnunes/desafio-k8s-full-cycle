@@ -1,5 +1,9 @@
 steps:
 
+- id: "Instalando dependencias"
+  name: 'gcr.io/cloud-builders/go'
+  args: ['install', '.']
+
 - id: "Rodando os testes"
   name: 'gcr.io/cloud-builders/go'
   args: ['test']
