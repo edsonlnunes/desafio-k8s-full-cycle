@@ -3,12 +3,12 @@ steps:
 - id: "Instalando dependencias"
   name: 'gcr.io/cloud-builders/go'
   args: ['install', '.']
-  env: ['PROJECT_ROOT=code.education']
+  env: ['PROJECT_ROOT=main']
 
 - id: "Rodando os testes"
   name: 'gcr.io/cloud-builders/go'
   args: ['test']
-  env: ['PROJECT_ROOT=code.education']
+  env: ['PROJECT_ROOT=main']
 
 - id: 'Criando o container'
   name: 'gcr.io/cloud-builders/docker'
