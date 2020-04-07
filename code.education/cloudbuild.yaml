@@ -1,14 +1,13 @@
 steps:
 
-- id: "Instalando dependencias"
-  name: 'gcr.io/cloud-builders/go'
-  args: ['install', '.']
-  env: ['GOPATH=.']
+# - id: "Instalando dependencias"
+#   name: 'gcr.io/cloud-builders/go'
+#   args: ['install', '.']
+#   env: ['GOPATH=.']
 
 - id: "Rodando os testes"
   name: 'gcr.io/cloud-builders/go'
-  args: ['test']
-  env: ['GOPATH=.']
+  args: ['test', '.']
 
 - id: 'Criando o container'
   name: 'gcr.io/cloud-builders/docker'
