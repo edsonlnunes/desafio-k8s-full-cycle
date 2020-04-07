@@ -4,7 +4,7 @@ FROM golang:1.12-alpine
 
 WORKDIR /go/src/
 
-COPY . .
+COPY ./src .
 
 RUN GOOS=linux go build -o main
 
