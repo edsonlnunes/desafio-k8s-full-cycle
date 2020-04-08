@@ -8,7 +8,7 @@ steps:
 - id: "Rodando os testess"
   name: 'gcr.io/cloud-builders/go'
   args: ['test', './code.education/src/desafio']
-  env: ['GOPATH=.']
+  # env: ['GOPATH=.']
 
 - id: 'Criando o container'
   name: 'gcr.io/cloud-builders/docker'
