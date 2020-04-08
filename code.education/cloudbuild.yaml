@@ -1,8 +1,14 @@
 steps:
 
-- id: "Rodando os testes"
+# - id: "Instalando dependencias"
+#   name: 'gcr.io/cloud-builders/go'
+#   args: ['install', '.']
+#   env: ['GOPATH=.']
+
+- id: "Rodando os testess"
   name: 'gcr.io/cloud-builders/go'
-  args: ['test']
+  args: ['test', './code.education']
+  env: ['GOPATH=.']
 
 - id: 'Criando o container'
   name: 'gcr.io/cloud-builders/docker'
@@ -14,7 +20,7 @@ steps:
   - 'gcr.io/$PROJECT_ID/desafio-go-k8s:1.0.0'
   - '-t'
   - 'gcr.io/$PROJECT_ID/desafio-go-k8s:latest'
-  - '.'
+  - './code.education/.'
 
 images:
 - 'gcr.io/$PROJECT_ID/desafio-go-k8s:latest'

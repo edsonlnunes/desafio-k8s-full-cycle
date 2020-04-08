@@ -10,9 +10,9 @@ func greeting(phrase string) string{
 }
 
 func main(){
-	
 	phrase := greeting("Code.Education Rocks");
 
+	// funcao get
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, phrase);
 	});
